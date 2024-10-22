@@ -7,8 +7,9 @@ namespace Observer
     {
         [SerializeField] PlayerHealth playerHealth;
         [SerializeField] Slider Slider;
+        [SerializeField] Image clock;
         [SerializeField] Button hitBtn, healBtn;
-        
+
         private void Start()
         {
             hitBtn.onClick.AddListener(() => playerHealth.TakeDamage(5));
@@ -24,6 +25,7 @@ namespace Observer
         {
             float newValue = (float)value;
             Slider.value = newValue / 100;
+            clock.fillAmount = newValue / 100;
             Debug.Log((newValue / 100).ToString());
         }
 
