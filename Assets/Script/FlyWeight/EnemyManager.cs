@@ -16,7 +16,7 @@ namespace FlyWeight
                 Enemy enemy = enemyFactory.GetEnemy(enemySprite);
                 Vector3 position = new Vector3(Random.Range(-50f, 50f), Random.Range(-50f, 50f));
                 enemy.Display(position, transform);
-            }
+            }            
         }
     }
 }

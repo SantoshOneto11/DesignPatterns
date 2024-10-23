@@ -2545,6 +2545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 414634138}
   Slider: {fileID: 813756347}
+  clock: {fileID: 1714278686}
   hitBtn: {fileID: 1123819522}
   healBtn: {fileID: 1056526177}
 --- !u!1 &1714278684
