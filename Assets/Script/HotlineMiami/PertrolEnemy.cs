@@ -10,7 +10,8 @@ namespace HotlineMiami
         private void Start()
         {
             InitEnemy();
-            SetWayPoints(FindObjectsOfType<WayPoints>().Select(x => x.transform).ToArray());
+            //SetWayPoints(FindObjectsOfType<WayPoints>().Select(x => x.transform).ToArray());
+            SetWayPoints(wayPoints);
         }
         public override void Petrol()
         {

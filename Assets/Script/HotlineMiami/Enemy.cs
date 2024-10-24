@@ -12,8 +12,8 @@ namespace HotlineMiami
         public float detectionRange;
         public float attackRange;
 
+        public Transform[] wayPoints;
         protected ENEMY_STATE currentState;
-        protected Transform[] wayPoints;
         protected int currentWayPointIndex = 0;
         protected Transform player;
 
