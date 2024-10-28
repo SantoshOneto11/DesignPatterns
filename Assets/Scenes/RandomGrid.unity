@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 76623147}
   - component: {fileID: 76623146}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Floating Island
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,6 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4fdc3fb56da53448b7feb5ebde72c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterPrefab: {fileID: 8856518071921715696, guid: 7c54dd96c6649e5478d09b998fd585e1, type: 3}
+  landPrefab: {fileID: 8856518071921715696, guid: 51098c3e922d5474c812d792b51fc9dd, type: 3}
 --- !u!4 &76623147
 Transform:
   m_ObjectHideFlags: 0
@@ -223,7 +225,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 150
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

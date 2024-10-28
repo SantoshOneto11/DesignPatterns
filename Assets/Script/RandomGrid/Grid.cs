@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+
 namespace floatinIsland
 {
     public class Grid : MonoBehaviour
@@ -6,13 +8,18 @@ namespace floatinIsland
         private float scale = 0.1f;
         private float waterLevel = 0.4f;
         private int gridSize = 100;
+        private Vector3 gridCenterOffset;
         Cell[,] cells;
+
+        public GameObject waterPrefab, landPrefab;
 
         private void Start()
         {
+            gridCenterOffset = new Vector3(gridSize / 2f, gridSize / 2f, 0); // Calculate the center offset
+
             float[,] noiseMap = new float[gridSize, gridSize];
-            float xOffset = Random.Range(-1000, 1000);
-            float yOffset = Random.Range(-1000, 1000);
+            float xOffset = Random.Range(-100, 100);
+            float yOffset = Random.Range(-100, 100);
 
             for (int i = 0; i < noiseMap.GetLength(0); i++)
             {
@@ -48,6 +55,25 @@ namespace floatinIsland
                     cells[i, j] = cell;
                 }
             }
+
+            StartCoroutine(SpawnCubesSlowly());
+        }
+
+        IEnumerator SpawnCubesSlowly()
+        {
+            for (int i = 0; i < cells.GetLength(0); i++)
+            {
+                for (int j = 0; j < cells.GetLength(1); j++)
+                {
+                    Cell cell = cells[i, j];
+                    Vector3 pos = new Vector3(i, j, 0) - gridCenterOffset; // Adjusted position with offset
+
+                    GameObject prefab = cell.isWater ? waterPrefab : landPrefab;
+                    Instantiate(prefab, pos, Quaternion.identity);
+
+                    yield return new WaitForSeconds(0.01f); // Delay between each spawn for a slower effect
+                }
+            }
         }
 
         private void OnDrawGizmos()
@@ -60,12 +86,9 @@ namespace floatinIsland
                 for (int j = 0; j < cells.GetLength(1); j++)
                 {
                     Cell cell = cells[i, j];
-                    if (cell.isWater)
-                        Gizmos.color = Color.blue;
-                    else
-                        Gizmos.color = Color.green;
+                    Vector3 pos = new Vector3(i, j, 0) - gridCenterOffset;
 
-                    Vector3 pos = new Vector3(i, j, 0);
+                    Gizmos.color = cell.isWater ? Color.blue : Color.green;
                     Gizmos.DrawCube(pos, Vector3.one);
                 }
             }
